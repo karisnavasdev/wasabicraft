@@ -1,5 +1,5 @@
 // ── Token config ──
-const WASABI_CA = 'wababipump';
+const WASABI_CA = '2pL9J9mTD9RAGS9jnNeB2kKR62ar8pnQAV2sMgyrpump';
 const WASABI_PUMP_URL = 'https://pump.fun/coin/' + WASABI_CA;
 
 // ── Deco canvas (cheese + chili emojis) ──
@@ -535,11 +535,18 @@ function flashHudStat(id) {
   setTimeout(() => el.classList.remove('hud-flash'), 400);
 }
 
+function getAllGameBests() {
+  const keys = ['wasabi-catch-best', 'wasabi-fly-best', 'wasabi-cards-best', 'wasabi-dash-best'];
+  const singles = keys.map((k) => parseInt(localStorage.getItem(k) || '0', 10) || 0);
+  const champ = parseInt(localStorage.getItem('wasabi-championship-best') || '0', 10) || 0;
+  return singles.concat(champ);
+}
+
 function updateArcadeHud() {
   const coinsEl = document.getElementById('hud-coins');
   const xpEl = document.getElementById('hud-xp');
   const bestEl = document.getElementById('hud-best');
-  const best = parseInt(localStorage.getItem('wasabi-catch-best') || '0', 10) || 0;
+  const best = Math.max(0, ...getAllGameBests());
   if (coinsEl) coinsEl.textContent = arcadeCoins.toLocaleString();
   if (xpEl) xpEl.textContent = arcadeXp.toLocaleString();
   if (bestEl) bestEl.textContent = best.toLocaleString();
@@ -554,7 +561,16 @@ window.addEventListener('wasabi-game-update', (e) => {
 });
 
 window.addEventListener('wasabi-game-over', (e) => {
+  if (window.wasabiChampionship?.handleGameOver(e)) return;
   const { score } = e.detail;
   awardArcade(score, Math.floor(score / 5) + 10);
+});
+
+window.addEventListener('wasabi-championship-complete', (e) => {
+  const { total, isNewBest } = e.detail;
+  const bonus = total + (isNewBest ? 200 : 50);
+  awardArcade(bonus, Math.floor(total / 3) + 50);
+  flashHudStat('hud-best');
+  updateArcadeHud();
 });
 

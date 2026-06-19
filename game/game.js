@@ -62,7 +62,7 @@
 
   function syncSiteHud() {
     window.dispatchEvent(new CustomEvent('wasabi-game-update', {
-      detail: { score, best, level },
+      detail: { score, best, level, game: 'catch' },
     }));
   }
 
@@ -199,7 +199,7 @@
     saveBest(score);
     syncSiteHud();
     window.dispatchEvent(new CustomEvent('wasabi-game-over', {
-      detail: { score, best, won },
+      detail: { score, best, won, game: 'catch' },
     }));
     goScore.textContent = score;
     goBest.textContent = best;
