@@ -49,6 +49,8 @@
   width: 36px;
   height: 36px;
   object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
   filter: drop-shadow(0 0 8px var(--green));
 }
 
@@ -152,8 +154,10 @@ body.game-page-body {
   margin-bottom: 12px;
 }
 
-#game-sub {
-  font-size: 0.9rem;
+.game-page-body #game-sub {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.42rem;
+  letter-spacing: 1px;
   color: var(--muted);
   margin-top: 4px;
 }
@@ -287,6 +291,8 @@ body:not(.arcade-body) #canvas-shell {
   width: 90px;
   height: 90px;
   object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
   filter: drop-shadow(0 0 20px var(--green));
   animation: mascot-bob 2s ease-in-out infinite;
 }

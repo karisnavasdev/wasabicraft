@@ -1,0 +1,519 @@
+/* ══════════════════════════════════════
+   PIXEL ART THEME
+   ══════════════════════════════════════ */
+
+:root {
+  --pixel-border: 3px;
+  --pixel-shadow: 4px 4px 0 #000;
+  --pixel-shadow-sm: 2px 2px 0 #000;
+  --pixel-shadow-green: 4px 4px 0 rgba(111, 255, 0, 0.35);
+}
+
+/* Pixel grid background */
+.arcade-body,
+.game-page-body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(111, 255, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(111, 255, 0, 0.04) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Readable body copy; UI stays pixel */
+.panel-sub,
+.step p,
+#community-sub,
+#tknx-sub,
+#disclaimer,
+.overlay p,
+#game-sub,
+.community-card-cta,
+.stat-desc,
+.ps-val,
+#ca-text,
+#footer-ca code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* ── Header ── */
+#site-header,
+.game-page-body #game-header {
+  background: #0a0a0a;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: var(--pixel-border) solid var(--green);
+  box-shadow: 0 var(--pixel-border) 0 #000;
+}
+
+#header-name,
+.game-page-body #header-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+}
+
+#header-arcade-tag,
+.panel-tag {
+  border-radius: 0;
+  font-family: 'Press Start 2P', monospace;
+  box-shadow: var(--pixel-shadow-sm);
+}
+
+.nav-link {
+  border-radius: 0;
+  font-size: 0.42rem;
+  border: 2px solid #333;
+  box-shadow: var(--pixel-shadow-sm);
+  transition: none;
+}
+
+.nav-link:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--green);
+}
+
+#header-buy,
+#copy-btn,
+#footer-ca button,
+.btn,
+#melt-btn,
+#roulette-btn,
+.game-btn,
+.header-link {
+  border-radius: 0 !important;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  border: var(--pixel-border) solid #000 !important;
+  box-shadow: var(--pixel-shadow);
+  transition: transform 0.05s steps(1), box-shadow 0.05s steps(1), background 0.05s;
+  text-shadow: none;
+}
+
+#header-buy {
+  font-size: 0.5rem;
+  padding: 10px 16px;
+  border-color: #000 !important;
+}
+
+#header-buy:hover,
+#copy-btn:hover,
+#footer-ca button:hover,
+.btn-primary:hover,
+.btn-play:hover,
+.game-btn-gold:hover,
+.game-btn-green:hover,
+#melt-btn:hover,
+#roulette-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+  filter: none;
+}
+
+#header-buy:active,
+.btn:active,
+#melt-btn:active,
+#roulette-btn:active,
+.game-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #000;
+}
+
+.btn {
+  font-size: 0.5rem;
+  padding: 14px 24px;
+}
+
+.btn-secondary:hover {
+  box-shadow: var(--pixel-shadow-green);
+}
+
+/* ── Hero ── */
+#hero-bg {
+  background:
+    linear-gradient(rgba(111, 255, 0, 0.06) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(111, 255, 0, 0.06) 2px, transparent 2px),
+    #0a0a0a;
+  background-size: 16px 16px, 16px 16px, auto;
+}
+
+#hero-bg::after {
+  background: radial-gradient(ellipse at center, transparent 40%, var(--bg) 100%);
+}
+
+#tagline {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.85rem, 3.5vw, 1.4rem);
+  letter-spacing: 2px;
+  line-height: 1.9;
+  text-shadow:
+    2px 2px 0 #000,
+    4px 4px 0 rgba(111, 255, 0, 0.4);
+  filter: none;
+}
+
+#mascot {
+  filter: drop-shadow(3px 3px 0 #000) drop-shadow(5px 5px 0 rgba(111, 255, 0, 0.5));
+  animation: pixelBob 1s steps(2) infinite;
+}
+
+@keyframes pixelBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(3px 3px 0 #000) drop-shadow(5px 5px 0 rgba(111, 255, 0, 0.45)); }
+  50% { filter: drop-shadow(3px 3px 0 #000) drop-shadow(7px 7px 0 rgba(111, 255, 0, 0.7)); }
+}
+
+#mascot.heat-0 { animation: pixelBob 1s steps(2) infinite; filter: drop-shadow(3px 3px 0 #000) drop-shadow(5px 5px 0 rgba(68, 153, 255, 0.5)); }
+#mascot.heat-2 { animation: pixelBob 0.8s steps(2) infinite; filter: drop-shadow(3px 3px 0 #000) drop-shadow(5px 5px 0 rgba(255, 215, 0, 0.6)); }
+#mascot.heat-3 { animation: pixelBob 0.6s steps(2) infinite; filter: drop-shadow(3px 3px 0 #000) drop-shadow(5px 5px 0 rgba(255, 107, 0, 0.6)); }
+#mascot.heat-4 { animation: pixelBob 0.4s steps(2) infinite; filter: drop-shadow(3px 3px 0 #000) drop-shadow(5px 5px 0 rgba(255, 0, 0, 0.7)); }
+
+#heat-badge {
+  border-radius: 0;
+  border-width: 2px;
+  box-shadow: var(--pixel-shadow-sm);
+}
+
+#heat-badge-text,
+#spicy-label-text,
+#spicy-mascot-icon {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+}
+
+#ca-box,
+#footer-ca {
+  border-radius: 0;
+  border-width: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+}
+
+#ca-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.42rem;
+}
+
+.cabinet-light {
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+  box-shadow: none;
+  border: 1px solid #000;
+  animation: pixelBlink 0.8s steps(2) infinite;
+}
+
+@keyframes pixelBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+/* ── Price strip & HUD ── */
+#price-strip {
+  background: #0a0a0a;
+  border-bottom: 2px solid #222;
+  box-shadow: 0 2px 0 #000;
+}
+
+.ps-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 0;
+  box-shadow: none;
+  border: 1px solid #000;
+  animation: pixelBlink 1s steps(2) infinite;
+}
+
+.ps-label,
+.ps-heat-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.38rem;
+}
+
+.hud-stat {
+  border-radius: 0;
+  border: 2px solid #333;
+  border-left: 4px solid var(--green);
+  box-shadow: var(--pixel-shadow-sm);
+}
+
+.hud-stat-val {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+}
+
+#spicy-meter-track {
+  border-radius: 0;
+  border-width: 2px;
+}
+
+#spicy-meter-fill {
+  border-radius: 0;
+  background: var(--green);
+  transition: height 0.2s steps(4);
+}
+
+/* ── Panels & cards ── */
+.arcade-panel,
+.step,
+.tknx-card,
+.community-card,
+.stat-card {
+  border-radius: 0 !important;
+  border-width: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+  transition: transform 0.05s steps(1), box-shadow 0.05s;
+}
+
+.step:hover,
+.tknx-card:hover,
+.community-card:hover,
+.stat-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+}
+
+.panel-title,
+#how-to-buy h2,
+#community h2,
+#tknx-title,
+#melt-section h2,
+#roulette-title,
+#game-title,
+.overlay h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.7rem, 2.5vw, 1rem);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #000;
+  filter: none;
+}
+
+.level-badge {
+  border-radius: 0;
+  font-size: 0.42rem;
+  border: 2px solid #000;
+  box-shadow: var(--pixel-shadow-sm);
+}
+
+.step-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 0 #000;
+  opacity: 1;
+}
+
+.step h3,
+.community-card-name,
+.tknx-val,
+.tknx-label,
+.stat-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.tknx-label {
+  font-size: 0.4rem;
+}
+
+.community-card-icon {
+  border-radius: 0;
+  border: 2px solid #333;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  box-shadow: var(--pixel-shadow-sm);
+}
+
+.community-card:hover {
+  transform: translate(-2px, -2px);
+}
+
+#card-x:hover   { box-shadow: 6px 6px 0 rgba(255, 255, 255, 0.15); }
+#card-tg:hover  { box-shadow: 6px 6px 0 rgba(41, 182, 246, 0.25); }
+#card-pump:hover { box-shadow: 6px 6px 0 rgba(111, 255, 0, 0.25); }
+
+/* ── Roulette & melt ── */
+#roulette-machine {
+  border-radius: 0;
+  border-width: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+}
+
+#roulette-display {
+  border-radius: 0;
+  border-width: var(--pixel-border);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.4rem;
+  box-shadow: inset 0 0 0 2px #000, var(--pixel-shadow-sm);
+}
+
+#roulette-display.result-mild  { box-shadow: inset 0 0 0 2px var(--green), 4px 4px 0 rgba(111, 255, 0, 0.4); }
+#roulette-display.result-spicy { box-shadow: inset 0 0 0 2px var(--gold), 4px 4px 0 rgba(255, 215, 0, 0.4); }
+#roulette-display.result-nuclear {
+  animation: pixelBlink 0.3s steps(2) infinite;
+  box-shadow: inset 0 0 0 2px #f00, 4px 4px 0 rgba(255, 0, 0, 0.5);
+}
+
+.odd {
+  border-radius: 0;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.38rem;
+  border-width: 2px;
+}
+
+#melt-btn {
+  background: var(--fire);
+  font-size: 0.65rem;
+}
+
+#melt-counter-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1rem, 4vw, 1.6rem);
+  background: none;
+  -webkit-text-fill-color: var(--fire);
+  color: var(--fire);
+  text-shadow: 2px 2px 0 #000, 3px 3px 0 var(--gold);
+}
+
+#melt-counter-label,
+#melt-msg,
+#roulette-msg {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.45rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+#footer-tagline,
+.social-link {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.45rem;
+}
+
+.social-link:hover {
+  text-shadow: 1px 1px 0 var(--green);
+}
+
+#header-logo,
+#footer-logo,
+.overlay-mascot {
+  filter: drop-shadow(2px 2px 0 #000);
+}
+
+/* ── Game canvas shell ── */
+#canvas-shell {
+  border-radius: 0;
+  border-width: var(--pixel-border);
+  box-shadow:
+    var(--pixel-shadow),
+    0 0 0 1px rgba(111, 255, 0, 0.2);
+}
+
+#hud {
+  background: linear-gradient(to bottom, rgba(8, 8, 8, 0.95) 0%, transparent 100%);
+}
+
+.hud-label,
+.go-stat-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.38rem;
+}
+
+.hud-val,
+.go-stat-val {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.65rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.overlay {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: rgba(8, 8, 8, 0.94);
+  border: 2px solid #333;
+}
+
+.key-hint {
+  border-radius: 0;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.38rem;
+  border-width: 2px;
+  box-shadow: var(--pixel-shadow-sm);
+}
+
+.legend-item {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+}
+
+/* ── Scanlines: chunkier pixels ── */
+#scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.18) 3px,
+    rgba(0, 0, 0, 0.18) 4px
+  );
+  opacity: 0.45;
+}
+
+/* ── Animations: stepped ── */
+.reveal {
+  transition: opacity 0.4s steps(6), transform 0.4s steps(6);
+}
+
+@keyframes pressStartBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes mascot-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.overlay-mascot {
+  animation: mascot-bob 1s steps(2) infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+body.shake { animation: shake 0.4s steps(4); }
+
+/* ── Mobile pixel tweaks ── */
+@media (max-width: 768px) {
+  #tagline {
+    font-size: clamp(0.55rem, 3.5vw, 0.75rem);
+    line-height: 2;
+  }
+
+  .btn {
+    font-size: 0.42rem;
+  }
+
+  #header-name {
+    font-size: 0.5rem;
+  }
+
+  .panel-title {
+    font-size: 0.65rem;
+  }
+
+  #melt-btn {
+    font-size: 0.5rem;
+  }
+
+  #roulette-display {
+    font-size: 1rem;
+  }
+}

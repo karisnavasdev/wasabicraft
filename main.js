@@ -264,7 +264,7 @@ function meltFace() {
   const mascot = document.getElementById('mascot');
   mascot.style.animation = 'none';
   mascot.style.transform = 'scale(1.3) rotate(10deg)';
-  mascot.style.filter = 'drop-shadow(0 0 40px #FF6B00) drop-shadow(0 0 80px rgba(255,107,0,0.6)) brightness(1.3)';
+  mascot.style.filter = 'drop-shadow(3px 3px 0 #000) drop-shadow(5px 5px 0 rgba(255,107,0,0.8))';
 
   msg.textContent = meltMessages[Math.floor(Math.random() * meltMessages.length)];
   msg.style.opacity = '1';
@@ -421,7 +421,7 @@ function effectNuclear() {
   const mascot = document.getElementById('mascot');
   mascot.style.animation = 'none';
   mascot.style.transform = 'scale(1.4) rotate(-8deg)';
-  mascot.style.filter = 'drop-shadow(0 0 60px #FF0000) drop-shadow(0 0 120px rgba(255,0,0,0.7)) brightness(1.4)';
+  mascot.style.filter = 'drop-shadow(3px 3px 0 #000) drop-shadow(6px 6px 0 rgba(255,0,0,0.8))';
   setTimeout(() => { mascot.style.transform = ''; mascot.style.filter = ''; mascot.style.animation = ''; }, 2000);
 
   for (let i = 0; i < 100; i++) {

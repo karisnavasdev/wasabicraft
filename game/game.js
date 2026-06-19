@@ -41,7 +41,7 @@
   let spawnTimer = 0;
   let difficulty = 1;
 
-  let player = { x: 0, y: 0, w: 64, h: 64, targetX: 0 };
+  let player = { x: 0, y: 0, w: 80, h: 80, targetX: 0 };
   let items = [];
   let particles = [];
   let floatTexts = [];
@@ -50,7 +50,7 @@
   const keys = {};
 
   const mascot = new Image();
-  mascot.src = (isSubpage ? '../' : '') + 'assets/logo.png';
+  mascot.src = (isSubpage ? '../' : '') + '123.png';
 
   const emojiSprites = {};
   for (const key of Object.keys(ITEMS)) {
@@ -320,26 +320,22 @@
   }
 
   function drawBackground() {
-    const grad = ctx.createLinearGradient(0, 0, 0, H);
-    grad.addColorStop(0, '#0d0d0d');
-    grad.addColorStop(0.5, '#0a0a0a');
-    grad.addColorStop(1, '#0d0800');
-    ctx.fillStyle = grad;
+    ctx.fillStyle = '#0a0a0a';
     ctx.fillRect(0, 0, W, H);
 
-    ctx.strokeStyle = 'rgba(111,255,0,0.04)';
+    ctx.strokeStyle = 'rgba(111,255,0,0.08)';
     ctx.lineWidth = 1;
-    const grid = 40;
+    const grid = 16;
     for (let x = 0; x < W; x += grid) {
       ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, H);
+      ctx.moveTo(Math.floor(x) + 0.5, 0);
+      ctx.lineTo(Math.floor(x) + 0.5, H);
       ctx.stroke();
     }
     for (let y = 0; y < H; y += grid) {
       ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(W, y);
+      ctx.moveTo(0, Math.floor(y) + 0.5);
+      ctx.lineTo(W, Math.floor(y) + 0.5);
       ctx.stroke();
     }
   }
@@ -369,17 +365,26 @@
     }
 
     if (mascot.complete) {
-      ctx.save();
-      ctx.shadowColor = '#6FFF00';
-      ctx.shadowBlur = 20;
       const bob = Math.sin(performance.now() / 300) * 3;
-      ctx.drawImage(mascot, player.x, player.y + bob, player.w, player.h);
+      const px = Math.round(player.x);
+      const py = Math.round(player.y + bob);
+      ctx.save();
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(mascot, px, py, player.w, player.h);
       ctx.restore();
     } else {
+      const px = Math.round(player.x);
+      const py = Math.round(player.y);
       ctx.fillStyle = '#6FFF00';
-      ctx.beginPath();
-      ctx.ellipse(player.x + player.w / 2, player.y + player.h / 2, player.w / 2, player.h / 2, 0, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.fillRect(px + 8, py + 4, player.w - 16, player.h - 8);
+      ctx.fillRect(px + 4, py + 12, player.w - 8, player.h - 20);
+      ctx.fillRect(px + 20, py, player.w - 28, 12);
+      ctx.fillStyle = '#000';
+      ctx.fillRect(px + 24, py + 20, 8, 8);
+      ctx.fillRect(px + 48, py + 20, 8, 8);
+      ctx.fillRect(px + 28, py + 36, 24, 10);
+      ctx.fillStyle = '#FF69B4';
+      ctx.fillRect(px + 36, py + 44, 8, 4);
     }
 
     for (const p of particles) {
