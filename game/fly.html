@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>WASABI FLY — $WASABICRAFT Arcade</title>
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="game.css" />
+  <link rel="stylesheet" href="../pixel.css" />
+</head>
+<body class="game-page-body">
+  <div id="scanlines" aria-hidden="true"></div>
+  <div id="crt-vignette" aria-hidden="true"></div>
+  <div id="champ-game-banner" class="champ-game-banner hidden">🏆 CHAMPIONSHIP — ROUND 2/4: FLY</div>
+
+  <header id="game-header">
+    <a href="../" id="header-brand">
+      <img src="../123.png" alt="Wasabi" id="header-logo" />
+      <span id="header-name">$WASABICRAFT</span>
+    </a>
+    <div id="header-actions">
+      <span id="header-high">BEST: <strong id="fly-hud-best">0</strong></span>
+      <a href="../" class="header-link">HOME</a>
+    </div>
+  </header>
+
+  <main id="game-wrap">
+    <div id="game-title-block">
+      <h1 id="game-title">WASABI FLY</h1>
+      <p id="game-sub">Flap through the chili gates. Don't crash.</p>
+    </div>
+
+    <div id="fly-shell" class="mini-game-shell" data-asset-base="../">
+      <canvas id="fly-canvas" aria-label="Wasabi Fly game"></canvas>
+      <div class="mini-hud">
+        <div class="hud-item"><span class="hud-label">SCORE</span><span id="fly-hud-score" class="hud-val">0</span></div>
+      </div>
+      <div id="fly-overlay-start" class="overlay">
+        <img src="../123.png" alt="" class="overlay-mascot" />
+        <h2>TAKE OFF</h2>
+        <p>Tap or press SPACE to flap.</p>
+        <button id="fly-btn-start" class="game-btn game-btn-gold">START FLYING</button>
+      </div>
+      <div id="fly-overlay-gameover" class="overlay hidden">
+        <img src="../123.png" alt="" class="overlay-mascot overlay-mascot-sad" />
+        <h2>CRASHED</h2>
+        <p id="fly-go-msg">Too spicy in the air.</p>
+        <div class="go-stats-row">
+          <div class="go-stat"><span class="go-stat-label">SCORE</span><span id="fly-go-score" class="go-stat-val">0</span></div>
+          <div class="go-stat"><span class="go-stat-label">BEST</span><span id="fly-go-best" class="go-stat-val">0</span></div>
+        </div>
+        <button id="fly-btn-retry" class="game-btn game-btn-gold">FLY AGAIN</button>
+        <a href="../" class="game-btn game-btn-ghost">HOME</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="championship-run.js"></script>
+  <script src="arcade-shared.js"></script>
+  <script src="fly.js"></script>
+  <script>
+    window.addEventListener('wasabi-game-over', (e) => {
+      if (window.wasabiChampRun?.handleGameOver('fly', e.detail.score)) return;
+    });
+    (function () {
+      const s = window.wasabiChampRun?.loadSession();
+      const banner = document.getElementById('champ-game-banner');
+      if (s?.active && banner) {
+        banner.textContent = '🏆 CHAMPIONSHIP — ROUND ' + (s.round + 1) + '/4: FLY';
+        banner.classList.remove('hidden');
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -561,7 +561,7 @@ window.addEventListener('wasabi-game-update', (e) => {
 });
 
 window.addEventListener('wasabi-game-over', (e) => {
-  if (window.wasabiChampionship?.handleGameOver(e)) return;
+  if (window.wasabiChampRun?.isActive()) return;
   const { score } = e.detail;
   awardArcade(score, Math.floor(score / 5) + 10);
 });

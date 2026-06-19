@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>WASABI DASH — $WASABICRAFT Arcade</title>
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="game.css" />
+  <link rel="stylesheet" href="../pixel.css" />
+</head>
+<body class="game-page-body">
+  <div id="scanlines" aria-hidden="true"></div>
+  <div id="crt-vignette" aria-hidden="true"></div>
+  <div id="champ-game-banner" class="champ-game-banner hidden">🏆 CHAMPIONSHIP — ROUND 4/4: DASH</div>
+
+  <header id="game-header">
+    <a href="../" id="header-brand">
+      <img src="../123.png" alt="Wasabi" id="header-logo" />
+      <span id="header-name">$WASABICRAFT</span>
+    </a>
+    <div id="header-actions">
+      <span id="header-high">BEST: <strong id="action-hud-best">0</strong></span>
+      <a href="../" class="header-link">HOME</a>
+    </div>
+  </header>
+
+  <main id="game-wrap">
+    <div id="game-title-block">
+      <h1 id="game-title">WASABI DASH</h1>
+      <p id="game-sub">Run, jump, dodge chilis. Collect gold coins.</p>
+    </div>
+
+    <div id="action-shell" class="mini-game-shell" data-asset-base="../">
+      <canvas id="action-canvas" aria-label="Wasabi Dash action game"></canvas>
+      <div class="mini-hud">
+        <div class="hud-item"><span class="hud-label">SCORE</span><span id="action-hud-score" class="hud-val">0</span></div>
+      </div>
+      <div id="action-overlay-start" class="overlay">
+        <img src="../123.png" alt="" class="overlay-mascot" />
+        <h2>READY TO DASH</h2>
+        <p>SPACE or tap to jump.</p>
+        <button id="action-btn-start" class="game-btn game-btn-gold">START DASH</button>
+      </div>
+      <div id="action-overlay-gameover" class="overlay hidden">
+        <img src="../123.png" alt="" class="overlay-mascot overlay-mascot-sad" />
+        <h2>GAME OVER</h2>
+        <p id="action-go-msg">Chili collision detected.</p>
+        <div class="go-stats-row">
+          <div class="go-stat"><span class="go-stat-label">SCORE</span><span id="action-go-score" class="go-stat-val">0</span></div>
+          <div class="go-stat"><span class="go-stat-label">BEST</span><span id="action-go-best" class="go-stat-val">0</span></div>
+        </div>
+        <button id="action-btn-retry" class="game-btn game-btn-gold">DASH AGAIN</button>
+        <a href="../" class="game-btn game-btn-ghost">HOME</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="championship-run.js"></script>
+  <script src="arcade-shared.js"></script>
+  <script src="action.js"></script>
+  <script>
+    window.addEventListener('wasabi-game-over', (e) => {
+      if (window.wasabiChampRun?.handleGameOver('action', e.detail.score)) return;
+    });
+    (function () {
+      const s = window.wasabiChampRun?.loadSession();
+      const banner = document.getElementById('champ-game-banner');
+      if (s?.active && banner) {
+        banner.textContent = '🏆 CHAMPIONSHIP — ROUND ' + (s.round + 1) + '/4: DASH';
+        banner.classList.remove('hidden');
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -48,11 +48,8 @@
         <span id="header-arcade-tag">ARCADE</span>
       </a>
       <nav id="header-nav">
+        <a href="#hero-games" class="nav-link">GAMES</a>
         <a href="#championship-zone" class="nav-link">CHAMP</a>
-        <a href="#play-zone" class="nav-link">CATCH</a>
-        <a href="#fly-zone" class="nav-link">FLY</a>
-        <a href="#cards-zone" class="nav-link">CARDS</a>
-        <a href="#action-zone" class="nav-link">DASH</a>
         <a href="#roulette-section" class="nav-link">ROULETTE</a>
         <a href="#how-to-buy" class="nav-link">QUEST</a>
         <a href="#community" class="nav-link">LOBBY</a>
@@ -98,27 +95,6 @@
     <div id="spicy-label-text">HEAT</div>
   </div>
 
-  <!-- CHAMPIONSHIP HUD (active run) -->
-  <div id="championship-hud" class="hidden" aria-live="polite">
-    <div class="champ-hud-inner">
-      <span class="champ-hud-badge">🏆 CHAMPIONSHIP</span>
-      <span id="champ-hud-round" class="champ-hud-round">ROUND 1/4</span>
-      <div id="champ-hud-slots" class="champ-hud-slots"></div>
-      <span class="champ-hud-total-label">TOTAL</span>
-      <span id="champ-hud-total" class="champ-hud-total">0</span>
-    </div>
-  </div>
-
-  <!-- CHAMPIONSHIP ROUND PROMPT -->
-  <div id="champ-round-prompt" class="champ-prompt hidden" role="dialog" aria-modal="true">
-    <div class="champ-prompt-box">
-      <img src="123.png" alt="" class="overlay-mascot" />
-      <h2 id="champ-prompt-title">ROUND 1</h2>
-      <p id="champ-prompt-msg">Play all 4 games. Combined score wins the championship.</p>
-      <button id="champ-prompt-btn" class="game-btn game-btn-gold">CONTINUE</button>
-    </div>
-  </div>
-
   <!-- CHAMPIONSHIP RESULTS -->
   <div id="champ-results" class="champ-prompt hidden" role="dialog" aria-modal="true">
     <div class="champ-prompt-box champ-results-box">
@@ -154,7 +130,7 @@
       <div id="heat-badge"><span id="heat-badge-text">LIVE</span></div>
       <h1 id="tagline">STAY SPICY.<br/>PRINT MONEY.<br/>MELT FACES.</h1>
       <p id="game-subtitle">THE SPICIEST MEME COIN ARCADE ON SOLANA</p>
-      <a href="#play-zone" id="press-start">
+      <a href="#hero-games" id="press-start">
         <span class="press-start-text">▶ PRESS START</span>
       </a>
       <div id="ca-box">
@@ -164,9 +140,30 @@
           <button id="copy-btn" aria-label="Copy contract address" onclick="copyCA()">COPY</button>
         </div>
       </div>
+      <div id="hero-games" class="hero-game-grid">
+        <a href="game/index.html" class="hero-game-btn">
+          <span class="hero-game-lvl">01</span>
+          <span class="hero-game-name">CATCH</span>
+          <span class="hero-game-desc">Catch &amp; dodge</span>
+        </a>
+        <a href="game/fly.html" class="hero-game-btn">
+          <span class="hero-game-lvl">02</span>
+          <span class="hero-game-name">FLY</span>
+          <span class="hero-game-desc">Flap &amp; survive</span>
+        </a>
+        <a href="game/cards.html" class="hero-game-btn">
+          <span class="hero-game-lvl">03</span>
+          <span class="hero-game-name">CARDS</span>
+          <span class="hero-game-desc">Higher / lower</span>
+        </a>
+        <a href="game/action.html" class="hero-game-btn">
+          <span class="hero-game-lvl">04</span>
+          <span class="hero-game-name">DASH</span>
+          <span class="hero-game-desc">Run &amp; jump</span>
+        </a>
+      </div>
       <div id="hero-buttons">
         <a href="#championship-zone" class="btn btn-play">▶ CHAMPIONSHIP</a>
-        <a href="#play-zone" class="btn btn-secondary">ARCADE</a>
         <a href="https://pump.fun/coin/2pL9J9mTD9RAGS9jnNeB2kKR62ar8pnQAV2sMgyrpump" target="_blank" rel="noopener noreferrer" class="btn btn-primary">BUY $WASABICRAFT</a>
         <a href="https://t.me/wasabicraft" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">JOIN TELEGRAM</a>
       </div>
@@ -213,239 +210,6 @@
     <p id="champ-last-run" class="champ-last-run">Last run: —</p>
 
     <button id="champ-btn-start" class="game-btn game-btn-gold champ-start-btn">▶ START CHAMPIONSHIP</button>
-  </section>
-
-  <!-- MAIN GAME -->
-  <section id="play-zone" class="arcade-panel reveal">
-    <div class="panel-header">
-      <span class="level-badge">LVL 01</span>
-      <h2 class="panel-title">WASABI CATCH</h2>
-      <span class="panel-tag">MAIN GAME</span>
-    </div>
-    <p class="panel-sub">Catch sushi &amp; cheese. Dodge the chilis. Stay spicy.</p>
-
-    <div id="canvas-shell" class="embedded-game">
-      <canvas id="game-canvas" aria-label="Wasabi Catch game"></canvas>
-
-      <div id="hud">
-        <div class="hud-item">
-          <span class="hud-label">SCORE</span>
-          <span id="hud-score" class="hud-val">0</span>
-        </div>
-        <div id="hud-hearts" aria-label="Lives"></div>
-        <div class="hud-item hud-right">
-          <span class="hud-label">LEVEL</span>
-          <span id="hud-level" class="hud-val">1</span>
-        </div>
-      </div>
-
-      <div id="overlay-start" class="overlay">
-        <img src="123.png" alt="" class="overlay-mascot" />
-        <h2>READY?</h2>
-        <p>Move Wasabi left &amp; right to catch the good stuff.<br/>Chilis burn — 3 hits and you're melted.</p>
-        <p class="overlay-controls">
-          <span class="key-hint">MOUSE / TOUCH</span> to move
-          <span class="key-sep">·</span>
-          <span class="key-hint">← →</span> or <span class="key-hint">A D</span>
-        </p>
-        <button id="btn-start" class="game-btn game-btn-gold">START GAME</button>
-      </div>
-
-      <div id="overlay-pause" class="overlay hidden">
-        <h2>PAUSED</h2>
-        <button id="btn-resume" class="game-btn game-btn-green">RESUME</button>
-        <button id="btn-quit" class="game-btn game-btn-ghost">QUIT</button>
-      </div>
-
-      <div id="overlay-gameover" class="overlay hidden">
-        <img src="123.png" alt="" class="overlay-mascot overlay-mascot-sad" />
-        <h2 id="go-title">FACE MELTED</h2>
-        <p id="go-msg">Too spicy. Try again.</p>
-        <div id="go-stats">
-          <div class="go-stat">
-            <span class="go-stat-label">SCORE</span>
-            <span id="go-score" class="go-stat-val">0</span>
-          </div>
-          <div class="go-stat">
-            <span class="go-stat-label">BEST</span>
-            <span id="go-best" class="go-stat-val">0</span>
-          </div>
-        </div>
-        <button id="btn-retry" class="game-btn game-btn-gold">PLAY AGAIN</button>
-      </div>
-    </div>
-
-    <div id="legend">
-      <span class="legend-item"><span class="legend-emoji">🍣</span> Sushi +15</span>
-      <span class="legend-item"><span class="legend-emoji">🧀</span> Cheese +5</span>
-      <span class="legend-item legend-bad"><span class="legend-emoji">🌶️</span> Chili −1 ❤️</span>
-    </div>
-  </section>
-
-  <!-- FLYING GAME -->
-  <section id="fly-zone" class="arcade-panel reveal">
-    <div class="panel-header">
-      <span class="level-badge">LVL 02</span>
-      <h2 class="panel-title">WASABI FLY</h2>
-      <span class="panel-tag">FLYING</span>
-    </div>
-    <p class="panel-sub">Flap through the chili gates. Don't crash.</p>
-
-    <div id="fly-shell" class="embedded-game mini-game-shell" data-asset-base="">
-      <canvas id="fly-canvas" aria-label="Wasabi Fly game"></canvas>
-      <div class="mini-hud">
-        <div class="hud-item">
-          <span class="hud-label">SCORE</span>
-          <span id="fly-hud-score" class="hud-val">0</span>
-        </div>
-        <div class="hud-item hud-right">
-          <span class="hud-label">BEST</span>
-          <span id="fly-hud-best" class="hud-val">0</span>
-        </div>
-      </div>
-      <div id="fly-overlay-start" class="overlay">
-        <img src="123.png" alt="" class="overlay-mascot" />
-        <h2>TAKE OFF</h2>
-        <p>Tap or press SPACE to flap.<br/>Dodge the chili pipes.</p>
-        <p class="overlay-controls">
-          <span class="key-hint">SPACE / TAP</span> to flap
-        </p>
-        <button id="fly-btn-start" class="game-btn game-btn-gold">START FLYING</button>
-      </div>
-      <div id="fly-overlay-gameover" class="overlay hidden">
-        <img src="123.png" alt="" class="overlay-mascot overlay-mascot-sad" />
-        <h2>CRASHED</h2>
-        <p id="fly-go-msg">Too spicy in the air.</p>
-        <div id="go-stats" class="go-stats-row">
-          <div class="go-stat">
-            <span class="go-stat-label">SCORE</span>
-            <span id="fly-go-score" class="go-stat-val">0</span>
-          </div>
-          <div class="go-stat">
-            <span class="go-stat-label">BEST</span>
-            <span id="fly-go-best" class="go-stat-val">0</span>
-          </div>
-        </div>
-        <button id="fly-btn-retry" class="game-btn game-btn-gold">FLY AGAIN</button>
-      </div>
-    </div>
-    <div class="legend">
-      <span class="legend-item"><span class="legend-emoji">🌶️</span> Pipes = death</span>
-      <span class="legend-item"><span class="legend-emoji">✈️</span> +1 per gate</span>
-    </div>
-  </section>
-
-  <!-- CARD GAME -->
-  <section id="cards-zone" class="arcade-panel reveal">
-    <div class="panel-header">
-      <span class="level-badge level-badge-gold">LVL 03</span>
-      <h2 class="panel-title">WASABI CARDS</h2>
-      <span class="panel-tag">CARD GAME</span>
-    </div>
-    <p class="panel-sub">Guess higher or lower. Build your streak.</p>
-
-    <div id="cards-game" class="cards-shell">
-      <div class="cards-hud">
-        <div class="cards-stat">
-          <span class="hud-label">STREAK</span>
-          <span id="cards-streak" class="hud-val">0</span>
-        </div>
-        <div class="cards-stat">
-          <span class="hud-label">BEST</span>
-          <span id="cards-best" class="hud-val">0</span>
-        </div>
-      </div>
-      <div class="cards-table">
-        <div class="card-slot">
-          <span class="card-slot-label">CURRENT</span>
-          <div id="cards-current" class="playing-card card-hidden"><span class="card-back">?</span></div>
-        </div>
-        <div class="card-vs">VS</div>
-        <div class="card-slot">
-          <span class="card-slot-label">NEXT</span>
-          <div id="cards-next" class="playing-card card-hidden"><span class="card-back">?</span></div>
-        </div>
-      </div>
-      <p id="cards-msg" class="cards-msg">Ready to play?</p>
-      <div class="cards-actions">
-        <button id="cards-btn-lower" class="game-btn game-btn-ghost" disabled>▼ LOWER</button>
-        <button id="cards-btn-higher" class="game-btn game-btn-green" disabled>▲ HIGHER</button>
-      </div>
-      <div id="cards-overlay-start" class="cards-overlay">
-        <img src="123.png" alt="" class="overlay-mascot" />
-        <h2>DEAL ME IN</h2>
-        <p>Is the next card higher or lower?<br/>Ties keep your streak alive.</p>
-        <button id="cards-btn-start" class="game-btn game-btn-gold">START GAME</button>
-      </div>
-      <div id="cards-overlay-gameover" class="cards-overlay hidden">
-        <img src="123.png" alt="" class="overlay-mascot overlay-mascot-sad" />
-        <h2>BUSTED</h2>
-        <div class="go-stats-row">
-          <div class="go-stat">
-            <span class="go-stat-label">STREAK</span>
-            <span id="cards-go-streak" class="go-stat-val">0</span>
-          </div>
-          <div class="go-stat">
-            <span class="go-stat-label">BEST</span>
-            <span id="cards-go-best" class="go-stat-val">0</span>
-          </div>
-        </div>
-        <button id="cards-btn-retry" class="game-btn game-btn-gold">PLAY AGAIN</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ACTION GAME -->
-  <section id="action-zone" class="arcade-panel reveal">
-    <div class="panel-header">
-      <span class="level-badge level-badge-fire">LVL 04</span>
-      <h2 class="panel-title">WASABI DASH</h2>
-      <span class="panel-tag">ACTION</span>
-    </div>
-    <p class="panel-sub">Run, jump, dodge chilis. Collect gold coins.</p>
-
-    <div id="action-shell" class="embedded-game mini-game-shell" data-asset-base="">
-      <canvas id="action-canvas" aria-label="Wasabi Dash action game"></canvas>
-      <div class="mini-hud">
-        <div class="hud-item">
-          <span class="hud-label">SCORE</span>
-          <span id="action-hud-score" class="hud-val">0</span>
-        </div>
-        <div class="hud-item hud-right">
-          <span class="hud-label">BEST</span>
-          <span id="action-hud-best" class="hud-val">0</span>
-        </div>
-      </div>
-      <div id="action-overlay-start" class="overlay">
-        <img src="123.png" alt="" class="overlay-mascot" />
-        <h2>READY TO DASH</h2>
-        <p>Auto-run through the danger zone.<br/>Jump over ground chilis and flyers.</p>
-        <p class="overlay-controls">
-          <span class="key-hint">SPACE / TAP</span> to jump
-        </p>
-        <button id="action-btn-start" class="game-btn game-btn-gold">START DASH</button>
-      </div>
-      <div id="action-overlay-gameover" class="overlay hidden">
-        <img src="123.png" alt="" class="overlay-mascot overlay-mascot-sad" />
-        <h2>GAME OVER</h2>
-        <p id="action-go-msg">Chili collision detected.</p>
-        <div class="go-stats-row">
-          <div class="go-stat">
-            <span class="go-stat-label">SCORE</span>
-            <span id="action-go-score" class="go-stat-val">0</span>
-          </div>
-          <div class="go-stat">
-            <span class="go-stat-label">BEST</span>
-            <span id="action-go-best" class="go-stat-val">0</span>
-          </div>
-        </div>
-        <button id="action-btn-retry" class="game-btn game-btn-gold">DASH AGAIN</button>
-      </div>
-    </div>
-    <div class="legend">
-      <span class="legend-item"><span class="legend-emoji">🪙</span> Coins +10</span>
-      <span class="legend-item legend-bad"><span class="legend-emoji">🌶️</span> Hit = over</span>
-    </div>
   </section>
 
   <!-- BONUS GAME: ROULETTE -->
@@ -597,10 +361,7 @@
     <p id="disclaimer">Not financial advice. Just spicy vibes. GAME OVER? BUY MORE WASABI.</p>
   </footer>
 
-  <script src="game/game.js"></script>
-  <script src="game/fly.js"></script>
-  <script src="game/cards.js"></script>
-  <script src="game/action.js"></script>
+  <script src="game/championship-run.js"></script>
   <script src="game/championship.js"></script>
   <script src="main.js"></script>
 </body>

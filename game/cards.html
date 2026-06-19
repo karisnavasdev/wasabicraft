@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>WASABI CARDS — $WASABICRAFT Arcade</title>
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="game.css" />
+  <link rel="stylesheet" href="../pixel.css" />
+</head>
+<body class="game-page-body">
+  <div id="scanlines" aria-hidden="true"></div>
+  <div id="crt-vignette" aria-hidden="true"></div>
+  <div id="champ-game-banner" class="champ-game-banner hidden">🏆 CHAMPIONSHIP — ROUND 3/4: CARDS</div>
+
+  <header id="game-header">
+    <a href="../" id="header-brand">
+      <img src="../123.png" alt="Wasabi" id="header-logo" />
+      <span id="header-name">$WASABICRAFT</span>
+    </a>
+    <div id="header-actions">
+      <a href="../" class="header-link">HOME</a>
+    </div>
+  </header>
+
+  <main id="game-wrap">
+    <div id="game-title-block">
+      <h1 id="game-title">WASABI CARDS</h1>
+      <p id="game-sub">Guess higher or lower. Build your streak.</p>
+    </div>
+
+    <div id="cards-game" class="cards-shell">
+      <div class="cards-hud">
+        <div class="cards-stat"><span class="hud-label">STREAK</span><span id="cards-streak" class="hud-val">0</span></div>
+        <div class="cards-stat"><span class="hud-label">BEST</span><span id="cards-best" class="hud-val">0</span></div>
+      </div>
+      <div class="cards-table">
+        <div class="card-slot"><span class="card-slot-label">CURRENT</span><div id="cards-current" class="playing-card card-hidden"><span class="card-back">?</span></div></div>
+        <div class="card-vs">VS</div>
+        <div class="card-slot"><span class="card-slot-label">NEXT</span><div id="cards-next" class="playing-card card-hidden"><span class="card-back">?</span></div></div>
+      </div>
+      <p id="cards-msg" class="cards-msg">Ready to play?</p>
+      <div class="cards-actions">
+        <button id="cards-btn-lower" class="game-btn game-btn-ghost" disabled>▼ LOWER</button>
+        <button id="cards-btn-higher" class="game-btn game-btn-green" disabled>▲ HIGHER</button>
+      </div>
+      <div id="cards-overlay-start" class="cards-overlay">
+        <img src="../123.png" alt="" class="overlay-mascot" />
+        <h2>DEAL ME IN</h2>
+        <p>Higher or lower than the current card?</p>
+        <button id="cards-btn-start" class="game-btn game-btn-gold">START GAME</button>
+      </div>
+      <div id="cards-overlay-gameover" class="cards-overlay hidden">
+        <img src="../123.png" alt="" class="overlay-mascot overlay-mascot-sad" />
+        <h2>BUSTED</h2>
+        <div class="go-stats-row">
+          <div class="go-stat"><span class="go-stat-label">STREAK</span><span id="cards-go-streak" class="go-stat-val">0</span></div>
+          <div class="go-stat"><span class="go-stat-label">BEST</span><span id="cards-go-best" class="go-stat-val">0</span></div>
+        </div>
+        <button id="cards-btn-retry" class="game-btn game-btn-gold">PLAY AGAIN</button>
+        <a href="../" class="game-btn game-btn-ghost">HOME</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="championship-run.js"></script>
+  <script src="arcade-shared.js"></script>
+  <script src="cards.js"></script>
+  <script>
+    window.addEventListener('wasabi-game-over', (e) => {
+      if (window.wasabiChampRun?.handleGameOver('cards', e.detail.score)) return;
+    });
+    (function () {
+      const s = window.wasabiChampRun?.loadSession();
+      const banner = document.getElementById('champ-game-banner');
+      if (s?.active && banner) {
+        banner.textContent = '🏆 CHAMPIONSHIP — ROUND ' + (s.round + 1) + '/4: CARDS';
+        banner.classList.remove('hidden');
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -340,6 +340,73 @@ body {
   justify-content: center;
 }
 
+.hero-game-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 12px;
+  width: min(640px, 100%);
+  margin: 0 auto;
+}
+
+.hero-game-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 10px;
+  background: #0a0a0a;
+  border: 3px solid #222;
+  box-shadow: 4px 4px 0 #000;
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.05s steps(1), box-shadow 0.05s, border-color 0.05s;
+}
+
+.hero-game-btn:hover {
+  transform: translate(-2px, -2px);
+  border-color: var(--green);
+  box-shadow: 6px 6px 0 #000, 0 0 0 1px rgba(111, 255, 0, 0.2);
+}
+
+.hero-game-lvl {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.35rem;
+  color: var(--gold);
+}
+
+.hero-game-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  color: var(--green);
+  letter-spacing: 1px;
+}
+
+.hero-game-desc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.champ-game-banner {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  z-index: 150;
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+  color: var(--gold);
+  background: #0a0a0a;
+  border-bottom: 2px solid var(--gold);
+  padding: 8px 12px;
+  box-shadow: 0 4px 0 #000;
+}
+
+.champ-game-banner.hidden { display: none; }
+
 .btn {
   font-family: var(--font-head);
   font-size: 1.3rem;
@@ -396,6 +463,8 @@ section { border-top: 1px solid #111; }
 }
 
 #play-zone { margin-top: 48px; }
+
+#championship-zone { margin-top: 32px; }
 
 #how-to-buy, #tokenomics, #community, #melt-section {
   position: relative;
@@ -1948,6 +2017,14 @@ body.championship-active .arcade-panel:not(.championship-round-active):not(#cham
 
   #hero-content { gap: 24px; padding: 120px 16px 40px; }
   #mascot-container { width: 140px; height: 140px; }
+
+  .hero-game-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .hero-game-btn { padding: 12px 8px; }
+  .hero-game-name { font-size: 0.45rem; }
 
   #tagline {
     font-size: clamp(2.4rem, 10vw, 3.5rem);

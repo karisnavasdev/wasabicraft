@@ -14,10 +14,12 @@
   <link rel="stylesheet" href="../style.css" />
   <link rel="stylesheet" href="game.css" />
   <link rel="stylesheet" href="../pixel.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body class="game-page-body">
   <div id="scanlines" aria-hidden="true"></div>
   <div id="crt-vignette" aria-hidden="true"></div>
+  <div id="champ-game-banner" class="champ-game-banner hidden">🏆 CHAMPIONSHIP — ROUND 1/4: CATCH</div>
 
   <header id="game-header">
     <a href="../" id="header-brand">
@@ -37,7 +39,7 @@
       <p id="game-sub">Catch sushi &amp; cheese. Dodge the chilis. Stay spicy.</p>
     </div>
 
-    <div id="canvas-shell">
+    <div id="canvas-shell" data-asset-base="../">
       <canvas id="game-canvas" aria-label="Wasabi Catch game"></canvas>
 
       <div id="hud">
@@ -96,6 +98,21 @@
     </div>
   </main>
 
+  <script src="championship-run.js"></script>
+  <script src="arcade-shared.js"></script>
   <script src="game.js"></script>
+  <script>
+    window.addEventListener('wasabi-game-over', (e) => {
+      if (window.wasabiChampRun?.handleGameOver('catch', e.detail.score)) return;
+    });
+    (function () {
+      const s = window.wasabiChampRun?.loadSession();
+      const banner = document.getElementById('champ-game-banner');
+      if (s?.active && banner) {
+        banner.textContent = '🏆 CHAMPIONSHIP — ROUND ' + (s.round + 1) + '/4: CATCH';
+        banner.classList.remove('hidden');
+      }
+    })();
+  </script>
 </body>
 </html>
