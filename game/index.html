@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>WASABI CATCH — $WASABI Arcade</title>
+  <meta name="description" content="Catch sushi. Dodge chilis. Stay spicy. The official $WASABI mini game." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body class="game-page-body">
+  <div id="scanlines" aria-hidden="true"></div>
+  <div id="crt-vignette" aria-hidden="true"></div>
+
+  <header id="game-header">
+    <a href="../" id="header-brand">
+      <img src="../assets/logo.png" alt="Wasabi" id="header-logo" />
+      <span id="header-name">$WASABI</span>
+      <span id="header-arcade-tag">ARCADE</span>
+    </a>
+    <div id="header-actions">
+      <span id="header-high">BEST: <strong id="header-high-val">0</strong></span>
+      <a href="../" class="header-link">HOME</a>
+    </div>
+  </header>
+
+  <main id="game-wrap">
+    <div id="game-title-block">
+      <h1 id="game-title">WASABI CATCH</h1>
+      <p id="game-sub">Catch sushi &amp; cheese. Dodge the chilis. Stay spicy.</p>
+    </div>
+
+    <div id="canvas-shell">
+      <canvas id="game-canvas" aria-label="Wasabi Catch game"></canvas>
+
+      <div id="hud">
+        <div class="hud-item">
+          <span class="hud-label">SCORE</span>
+          <span id="hud-score" class="hud-val">0</span>
+        </div>
+        <div id="hud-hearts" aria-label="Lives"></div>
+        <div class="hud-item hud-right">
+          <span class="hud-label">LEVEL</span>
+          <span id="hud-level" class="hud-val">1</span>
+        </div>
+      </div>
+
+      <div id="overlay-start" class="overlay">
+        <img src="../assets/logo.png" alt="" class="overlay-mascot" />
+        <h2>READY?</h2>
+        <p>Move Wasabi left &amp; right to catch the good stuff.<br/>Chilis burn — 3 hits and you're melted.</p>
+        <p class="overlay-controls">
+          <span class="key-hint">MOUSE / TOUCH</span> to move
+          <span class="key-sep">·</span>
+          <span class="key-hint">← →</span> or <span class="key-hint">A D</span>
+        </p>
+        <button id="btn-start" class="game-btn game-btn-gold">START GAME</button>
+      </div>
+
+      <div id="overlay-pause" class="overlay hidden">
+        <h2>PAUSED</h2>
+        <button id="btn-resume" class="game-btn game-btn-green">RESUME</button>
+        <button id="btn-quit" class="game-btn game-btn-ghost">QUIT</button>
+      </div>
+
+      <div id="overlay-gameover" class="overlay hidden">
+        <img src="../assets/logo.png" alt="" class="overlay-mascot overlay-mascot-sad" />
+        <h2 id="go-title">FACE MELTED</h2>
+        <p id="go-msg">Too spicy. Try again.</p>
+        <div id="go-stats">
+          <div class="go-stat">
+            <span class="go-stat-label">SCORE</span>
+            <span id="go-score" class="go-stat-val">0</span>
+          </div>
+          <div class="go-stat">
+            <span class="go-stat-label">BEST</span>
+            <span id="go-best" class="go-stat-val">0</span>
+          </div>
+        </div>
+        <button id="btn-retry" class="game-btn game-btn-gold">PLAY AGAIN</button>
+        <a href="../" class="game-btn game-btn-ghost">BACK TO SITE</a>
+      </div>
+    </div>
+
+    <div id="legend">
+      <span class="legend-item"><span class="legend-emoji">🍣</span> Sushi +15</span>
+      <span class="legend-item"><span class="legend-emoji">🧀</span> Cheese +5</span>
+      <span class="legend-item legend-bad"><span class="legend-emoji">🌶️</span> Chili −1 ❤️</span>
+    </div>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>

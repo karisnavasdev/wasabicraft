@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>$WASABI — Arcade | Stay Spicy. Print Money. Melt Faces.</title>
+  <meta name="description" content="The spiciest meme coin arcade on Solana. Play Wasabi Catch, spin the roulette, melt faces. $WASABI" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="game/game.css" />
+</head>
+<body class="arcade-body">
+  <div id="scanlines" aria-hidden="true"></div>
+  <div id="crt-vignette" aria-hidden="true"></div>
+  <canvas id="deco-canvas" aria-hidden="true"></canvas>
+  <canvas id="fire-canvas" aria-hidden="true"></canvas>
+
+  <!-- Arcade HUD -->
+  <div id="arcade-hud" aria-label="Player stats">
+    <div class="hud-stat">
+      <span class="hud-stat-icon">🪙</span>
+      <span class="hud-stat-label">COINS</span>
+      <span id="hud-coins" class="hud-stat-val">0</span>
+    </div>
+    <div class="hud-stat">
+      <span class="hud-stat-icon">⚡</span>
+      <span class="hud-stat-label">XP</span>
+      <span id="hud-xp" class="hud-stat-val">0</span>
+    </div>
+    <div class="hud-stat">
+      <span class="hud-stat-icon">🏆</span>
+      <span class="hud-stat-label">BEST</span>
+      <span id="hud-best" class="hud-stat-val">0</span>
+    </div>
+  </div>
+
+  <header id="site-header">
+    <div id="header-inner">
+      <a href="#" id="header-brand">
+        <img src="assets/logo.png" alt="Wasabi" id="header-logo" />
+        <span id="header-name">$WASABI</span>
+        <span id="header-arcade-tag">ARCADE</span>
+      </a>
+      <nav id="header-nav">
+        <a href="#play-zone" class="nav-link">PLAY</a>
+        <a href="#roulette-section" class="nav-link">ROULETTE</a>
+        <a href="#how-to-buy" class="nav-link">QUEST</a>
+        <a href="#community" class="nav-link">LOBBY</a>
+      </nav>
+      <a href="https://pump.fun/coin/wababipump" target="_blank" rel="noopener noreferrer" id="header-buy">BUY</a>
+    </div>
+  </header>
+
+  <div id="price-strip">
+    <div id="price-strip-inner">
+      <div class="ps-live-dot"></div>
+      <div class="ps-item">
+        <span class="ps-label">PRICE</span>
+        <span id="ps-price" class="ps-val">--</span>
+      </div>
+      <div class="ps-sep"></div>
+      <div class="ps-item">
+        <span class="ps-label">24H</span>
+        <span id="ps-change" class="ps-val">--</span>
+      </div>
+      <div class="ps-sep"></div>
+      <div class="ps-item" id="ps-mcap-item">
+        <span class="ps-label">MCAP</span>
+        <span id="ps-mcap" class="ps-val">--</span>
+      </div>
+      <div class="ps-sep" id="ps-mcap-sep"></div>
+      <div class="ps-item" id="ps-vol-item">
+        <span class="ps-label">VOL 24H</span>
+        <span id="ps-vol" class="ps-val">--</span>
+      </div>
+      <div class="ps-sep"></div>
+      <div class="ps-item ps-heat-item">
+        <span id="ps-heat-label" class="ps-heat-label">LOADING</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="spicy-meter" aria-hidden="true">
+    <div id="spicy-mascot-icon">MILD</div>
+    <div id="spicy-meter-track">
+      <div id="spicy-meter-fill"></div>
+    </div>
+    <div id="spicy-label-text">HEAT</div>
+  </div>
+
+  <!-- TITLE SCREEN -->
+  <section id="hero" class="title-screen">
+    <div id="hero-bg"></div>
+    <div id="hero-content">
+      <div class="arcade-cabinet-top">
+        <span class="cabinet-light"></span>
+        <span class="cabinet-light"></span>
+        <span class="cabinet-light"></span>
+      </div>
+      <div id="mascot-container">
+        <img id="mascot" src="assets/logo.png" alt="Wasabi mascot" />
+      </div>
+      <div id="heat-badge"><span id="heat-badge-text">LIVE</span></div>
+      <h1 id="tagline">STAY SPICY.<br/>PRINT MONEY.<br/>MELT FACES.</h1>
+      <p id="game-subtitle">THE SPICIEST MEME COIN ARCADE ON SOLANA</p>
+      <a href="#play-zone" id="press-start">
+        <span class="press-start-text">▶ PRESS START</span>
+      </a>
+      <div id="ca-box">
+        <span id="ca-label">◆ CONTRACT ADDRESS ◆</span>
+        <div id="ca-row">
+          <code id="ca-text">wababipump</code>
+          <button id="copy-btn" aria-label="Copy contract address" onclick="copyCA()">COPY</button>
+        </div>
+      </div>
+      <div id="hero-buttons">
+        <a href="#play-zone" class="btn btn-play">▶ PLAY NOW</a>
+        <a href="https://pump.fun/coin/wababipump" target="_blank" rel="noopener noreferrer" class="btn btn-primary">BUY $WASABI</a>
+        <a href="https://t.me/+qW5wutIxveZkNjQ0" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">JOIN TELEGRAM</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN GAME -->
+  <section id="play-zone" class="arcade-panel reveal">
+    <div class="panel-header">
+      <span class="level-badge">LVL 01</span>
+      <h2 class="panel-title">WASABI CATCH</h2>
+      <span class="panel-tag">MAIN GAME</span>
+    </div>
+    <p class="panel-sub">Catch sushi &amp; cheese. Dodge the chilis. Stay spicy.</p>
+
+    <div id="canvas-shell" class="embedded-game">
+      <canvas id="game-canvas" aria-label="Wasabi Catch game"></canvas>
+
+      <div id="hud">
+        <div class="hud-item">
+          <span class="hud-label">SCORE</span>
+          <span id="hud-score" class="hud-val">0</span>
+        </div>
+        <div id="hud-hearts" aria-label="Lives"></div>
+        <div class="hud-item hud-right">
+          <span class="hud-label">LEVEL</span>
+          <span id="hud-level" class="hud-val">1</span>
+        </div>
+      </div>
+
+      <div id="overlay-start" class="overlay">
+        <img src="assets/logo.png" alt="" class="overlay-mascot" />
+        <h2>READY?</h2>
+        <p>Move Wasabi left &amp; right to catch the good stuff.<br/>Chilis burn — 3 hits and you're melted.</p>
+        <p class="overlay-controls">
+          <span class="key-hint">MOUSE / TOUCH</span> to move
+          <span class="key-sep">·</span>
+          <span class="key-hint">← →</span> or <span class="key-hint">A D</span>
+        </p>
+        <button id="btn-start" class="game-btn game-btn-gold">START GAME</button>
+      </div>
+
+      <div id="overlay-pause" class="overlay hidden">
+        <h2>PAUSED</h2>
+        <button id="btn-resume" class="game-btn game-btn-green">RESUME</button>
+        <button id="btn-quit" class="game-btn game-btn-ghost">QUIT</button>
+      </div>
+
+      <div id="overlay-gameover" class="overlay hidden">
+        <img src="assets/logo.png" alt="" class="overlay-mascot overlay-mascot-sad" />
+        <h2 id="go-title">FACE MELTED</h2>
+        <p id="go-msg">Too spicy. Try again.</p>
+        <div id="go-stats">
+          <div class="go-stat">
+            <span class="go-stat-label">SCORE</span>
+            <span id="go-score" class="go-stat-val">0</span>
+          </div>
+          <div class="go-stat">
+            <span class="go-stat-label">BEST</span>
+            <span id="go-best" class="go-stat-val">0</span>
+          </div>
+        </div>
+        <button id="btn-retry" class="game-btn game-btn-gold">PLAY AGAIN</button>
+      </div>
+    </div>
+
+    <div id="legend">
+      <span class="legend-item"><span class="legend-emoji">🍣</span> Sushi +15</span>
+      <span class="legend-item"><span class="legend-emoji">🧀</span> Cheese +5</span>
+      <span class="legend-item legend-bad"><span class="legend-emoji">🌶️</span> Chili −1 ❤️</span>
+    </div>
+  </section>
+
+  <!-- BONUS GAME: ROULETTE -->
+  <section id="roulette-section" class="arcade-panel reveal">
+    <div class="panel-header">
+      <span class="level-badge level-badge-fire">LVL 02</span>
+      <h2 class="panel-title">WASABI ROULETTE</h2>
+      <span class="panel-tag">BONUS GAME</span>
+    </div>
+    <p class="panel-sub">Do you dare take a bite?</p>
+    <div id="roulette-machine">
+      <div id="roulette-display">?</div>
+      <div id="roulette-odds">
+        <span class="odd odd-mild">MILD 45%</span>
+        <span class="odd odd-spicy">SPICY 40%</span>
+        <span class="odd odd-nuclear">NUCLEAR 15%</span>
+      </div>
+    </div>
+    <button id="roulette-btn" onclick="spinRoulette()">TAKE A BITE</button>
+    <div id="roulette-msg"></div>
+  </section>
+
+  <!-- QUEST: HOW TO BUY -->
+  <section id="how-to-buy" class="arcade-panel reveal">
+    <div class="panel-header">
+      <span class="level-badge level-badge-gold">QUEST</span>
+      <h2 class="panel-title">HOW TO BUY</h2>
+      <span class="panel-tag">TUTORIAL</span>
+    </div>
+    <div id="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Get Phantom</h3>
+        <p>Download Phantom Wallet at phantom.app. Takes 2 minutes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Get SOL</h3>
+        <p>Buy SOL inside Phantom or send it from any exchange.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Paste the CA</h3>
+        <p>Open pump.fun or Phantom, paste the $WASABI contract address, and go.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>WAGMI</h3>
+        <p>Welcome to the spicy side. You are now dangerously based.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SCREEN -->
+  <section id="tokenomics" class="arcade-panel reveal">
+    <div class="panel-header">
+      <span class="level-badge">STATS</span>
+      <h2 class="panel-title">TOKENOMICS</h2>
+      <span class="panel-tag">DATA</span>
+    </div>
+    <p id="tknx-sub">Simple. Clean. Deadly.</p>
+    <div id="tknx-grid">
+      <div class="tknx-card">
+        <span class="tknx-val">1,000,000,000</span>
+        <span class="tknx-label">TOTAL SUPPLY</span>
+      </div>
+      <div class="tknx-card">
+        <span class="tknx-val">0%</span>
+        <span class="tknx-label">BUY TAX</span>
+      </div>
+      <div class="tknx-card">
+        <span class="tknx-val">0%</span>
+        <span class="tknx-label">SELL TAX</span>
+      </div>
+      <div class="tknx-card">
+        <span class="tknx-val">BURNED</span>
+        <span class="tknx-label">LIQUIDITY</span>
+      </div>
+      <div class="tknx-card">
+        <span class="tknx-val">FAIR</span>
+        <span class="tknx-label">LAUNCH</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOBBY -->
+  <section id="community" class="arcade-panel reveal">
+    <div class="panel-header">
+      <span class="level-badge level-badge-gold">LOBBY</span>
+      <h2 class="panel-title">JOIN THE COMMUNITY</h2>
+      <span class="panel-tag">MULTIPLAYER</span>
+    </div>
+    <p id="community-sub">The most dangerous community on Solana. We don't bite. We burn.</p>
+    <div id="community-cards">
+      <a href="https://x.com/i/communities/2039475212824023464" target="_blank" rel="noopener noreferrer" class="community-card" id="card-x">
+        <div class="community-card-icon">X</div>
+        <div class="community-card-info">
+          <span class="community-card-name">Twitter / X</span>
+          <span class="community-card-cta">Follow for updates</span>
+        </div>
+        <span class="community-card-arrow">→</span>
+      </a>
+      <a href="https://t.me/+qW5wutIxveZkNjQ0" target="_blank" rel="noopener noreferrer" class="community-card" id="card-tg">
+        <div class="community-card-icon">TG</div>
+        <div class="community-card-info">
+          <span class="community-card-name">Telegram</span>
+          <span class="community-card-cta">Join the chat</span>
+        </div>
+        <span class="community-card-arrow">→</span>
+      </a>
+      <a href="https://pump.fun/coin/wababipump" target="_blank" rel="noopener noreferrer" class="community-card" id="card-pump">
+        <div class="community-card-icon">PF</div>
+        <div class="community-card-info">
+          <span class="community-card-name">Pump.fun</span>
+          <span class="community-card-cta">Buy on Wasabi Pump</span>
+        </div>
+        <span class="community-card-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- BOSS FIGHT -->
+  <section id="melt-section" class="arcade-panel reveal">
+    <div class="panel-header">
+      <span class="level-badge level-badge-fire">BOSS</span>
+      <h2 class="panel-title">WARNING: DO NOT PRESS</h2>
+      <span class="panel-tag">FINAL BOSS</span>
+    </div>
+    <div id="melt-counter-wrap">
+      <span id="melt-counter-num">69,420</span>
+      <span id="melt-counter-label">FACES MELTED</span>
+    </div>
+    <button id="melt-btn" onclick="meltFace()">MELT MY FACE</button>
+    <div id="melt-msg"></div>
+  </section>
+
+  <footer id="footer">
+    <img src="assets/logo.png" alt="Wasabi" id="footer-logo" />
+    <p id="footer-tagline">$WASABI ARCADE — INSERT COIN TO CONTINUE</p>
+    <div id="socials">
+      <a href="https://x.com/i/communities/2039475212824023464" target="_blank" rel="noopener noreferrer" class="social-link">Twitter / X</a>
+      <a href="https://t.me/+qW5wutIxveZkNjQ0" target="_blank" rel="noopener noreferrer" class="social-link">Telegram</a>
+      <a href="https://pump.fun/coin/wababipump" target="_blank" rel="noopener noreferrer" class="social-link">Pump.fun</a>
+    </div>
+    <div id="footer-ca">
+      <code>wababipump</code>
+      <button aria-label="Copy contract address" onclick="copyCA()">COPY</button>
+    </div>
+    <p id="disclaimer">Not financial advice. Just spicy vibes. GAME OVER? BUY MORE WASABI.</p>
+  </footer>
+
+  <script src="game/game.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
