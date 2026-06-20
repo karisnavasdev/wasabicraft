@@ -48,6 +48,7 @@
         <span id="header-arcade-tag">ARCADE</span>
       </a>
       <nav id="header-nav">
+        <a href="#rewards-section" class="nav-link">REWARDS</a>
         <a href="#hero-games" class="nav-link">GAMES</a>
         <a href="#championship-zone" class="nav-link">CHAMP</a>
         <a href="#roulette-section" class="nav-link">ROULETTE</a>
@@ -163,6 +164,7 @@
         </a>
       </div>
       <div id="hero-buttons">
+        <a href="#rewards-section" class="btn btn-secondary">🏆 REWARDS</a>
         <a href="#championship-zone" class="btn btn-play">▶ CHAMPIONSHIP</a>
         <a href="https://pump.fun/coin/2pL9J9mTD9RAGS9jnNeB2kKR62ar8pnQAV2sMgyrpump" target="_blank" rel="noopener noreferrer" class="btn btn-primary">BUY $WASABICRAFT</a>
         <a href="https://t.me/wasabicraft" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">JOIN TELEGRAM</a>
@@ -210,6 +212,57 @@
     <p id="champ-last-run" class="champ-last-run">Last run: —</p>
 
     <button id="champ-btn-start" class="game-btn game-btn-gold champ-start-btn">▶ START CHAMPIONSHIP</button>
+  </section>
+
+  <!-- TOP PLAYER REWARDS -->
+  <section id="rewards-section" class="arcade-panel reveal rewards-panel">
+    <div class="panel-header">
+      <span class="level-badge level-badge-gold">🏆</span>
+      <h2 class="panel-title">TOP PLAYER REWARDS</h2>
+      <span class="panel-tag">SOL PRIZES</span>
+    </div>
+    <p class="panel-sub">Compete across all 4 games. Highest verified scores win SOL prizes.</p>
+
+    <div class="rewards-prize-grid">
+      <div class="rewards-prize-card rewards-prize-gold">
+        <span class="rewards-prize-medal">🥇</span>
+        <span class="rewards-prize-rank">#1</span>
+        <span class="rewards-prize-amount">50 SOL</span>
+      </div>
+      <div class="rewards-prize-card rewards-prize-silver">
+        <span class="rewards-prize-medal">🥈</span>
+        <span class="rewards-prize-rank">#2</span>
+        <span class="rewards-prize-amount">30 SOL</span>
+      </div>
+      <div class="rewards-prize-card rewards-prize-bronze">
+        <span class="rewards-prize-medal">🥉</span>
+        <span class="rewards-prize-rank">#3</span>
+        <span class="rewards-prize-amount">15 SOL</span>
+      </div>
+    </div>
+
+    <ol class="rewards-steps">
+      <li><span class="rewards-step-num">01</span> Play any of the 4 games on our website</li>
+      <li><span class="rewards-step-num">02</span> Take a screenshot of your highest score</li>
+      <li><span class="rewards-step-num">03</span> Send it to our <a href="https://x.com/WasabiCraft" id="rewards-x-link" target="_blank" rel="noopener noreferrer">Twitter / X</a> account</li>
+      <li><span class="rewards-step-num">04</span> Our dev team will verify all scores</li>
+    </ol>
+
+    <div class="rewards-your-scores">
+      <h3 class="rewards-subtitle">YOUR HIGH SCORES</h3>
+      <div id="rewards-scores-grid" class="rewards-scores-grid"></div>
+    </div>
+
+    <div class="rewards-submit-block">
+      <p class="rewards-submit-label">Submit your best score</p>
+      <div class="rewards-top-score">
+        <span id="rewards-top-game" class="rewards-top-game">—</span>
+        <span id="rewards-top-score" class="rewards-top-val">0</span>
+      </div>
+      <a id="rewards-submit-top" href="#rewards-scores-grid" class="game-btn game-btn-gold rewards-submit-btn" target="_blank" rel="noopener noreferrer">SUBMIT ON X</a>
+      <p class="rewards-note">Screenshot your score screen and post to <strong>@WasabiCraft</strong> — devs verify winners.</p>
+      <a href="https://x.com/WasabiCraft/status/2068168033491726484" id="rewards-announce-link" class="rewards-announce-link" target="_blank" rel="noopener noreferrer">View official announcement →</a>
+    </div>
   </section>
 
   <!-- BONUS GAME: ROULETTE -->
@@ -363,6 +416,7 @@
 
   <script src="game/championship-run.js"></script>
   <script src="game/championship.js"></script>
+  <script src="game/rewards.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

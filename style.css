@@ -466,6 +466,199 @@ section { border-top: 1px solid #111; }
 
 #championship-zone { margin-top: 32px; }
 
+/* ── Top Player Rewards ── */
+.rewards-panel {
+  max-width: 720px;
+  border-color: var(--gold);
+  box-shadow: 4px 4px 0 #000, 0 0 0 2px rgba(255, 215, 0, 0.12);
+}
+
+.rewards-panel .panel-title { color: var(--gold); }
+
+.rewards-prize-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.rewards-prize-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 12px;
+  background: #0a0a0a;
+  border: 3px solid #222;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.rewards-prize-gold { border-color: #FFD700; }
+.rewards-prize-silver { border-color: #C0C0C0; }
+.rewards-prize-bronze { border-color: #CD7F32; }
+
+.rewards-prize-medal { font-size: 1.8rem; line-height: 1; }
+
+.rewards-prize-rank {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: var(--muted);
+}
+
+.rewards-prize-amount {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.65rem;
+  color: var(--green);
+}
+
+.rewards-steps {
+  list-style: none;
+  text-align: left;
+  max-width: 480px;
+  margin: 0 auto 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rewards-steps li {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.rewards-steps a { color: var(--green); }
+
+.rewards-step-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.38rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.rewards-subtitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.45rem;
+  color: var(--green);
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.rewards-scores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.rewards-score-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 10px;
+  background: #111;
+  border: 2px solid #222;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.rewards-score-card-champ { border-color: rgba(255, 215, 0, 0.35); }
+
+.rewards-score-game {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.38rem;
+  color: var(--muted);
+}
+
+.rewards-score-val {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  color: var(--green);
+}
+
+.rewards-score-play,
+.rewards-score-submit {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.32rem;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  padding: 4px 8px;
+  border: 2px solid #333;
+  color: var(--text);
+}
+
+.rewards-score-play:hover { border-color: var(--green); color: var(--green); }
+.rewards-score-submit { border-color: var(--gold); color: var(--gold); }
+.rewards-score-submit:hover { background: rgba(255, 215, 0, 0.1); }
+.rewards-score-submit-disabled { opacity: 0.35; cursor: not-allowed; }
+
+.rewards-submit-block {
+  padding: 24px 20px;
+  background: #0a0a0a;
+  border: 3px solid #222;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.rewards-submit-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.rewards-top-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.rewards-top-game {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.45rem;
+  color: var(--gold);
+}
+
+.rewards-top-val {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  color: var(--green);
+}
+
+.rewards-submit-btn {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 0.5rem !important;
+}
+
+.rewards-btn-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.rewards-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.rewards-announce-link {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.35rem;
+  color: var(--green);
+  text-decoration: none;
+}
+
+.rewards-announce-link:hover { text-decoration: underline; }
+
 #how-to-buy, #tokenomics, #community, #melt-section {
   position: relative;
   z-index: 2;
@@ -1927,7 +2120,8 @@ body.championship-active .arcade-panel:not(.championship-round-active):not(#cham
 #fly-zone,
 #cards-zone,
 #action-zone,
-#championship-zone {
+#championship-zone,
+#rewards-section {
   padding: 48px 28px 56px;
   max-width: 900px;
   margin-left: auto;
@@ -2130,10 +2324,18 @@ body.championship-active .arcade-panel:not(.championship-round-active):not(#cham
   #fly-zone,
   #cards-zone,
   #action-zone,
-  #championship-zone {
+  #championship-zone,
+  #rewards-section {
     padding: 32px 16px 40px;
     margin-left: 12px;
     margin-right: 12px;
+  }
+
+  .rewards-prize-grid {
+    grid-template-columns: 1fr;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .playing-card {
