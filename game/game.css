@@ -436,6 +436,31 @@ body:not(.arcade-body) #canvas-shell {
 
 .legend-bad { color: var(--fire); }
 
+/* ── Fly game attack UI ── */
+.fly-mini-hud {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fly-attack-btn {
+  pointer-events: auto;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 6px 10px;
+  background: #1a1a1a;
+  border: 2px solid var(--gold);
+  box-shadow: 2px 2px 0 #000;
+  cursor: pointer;
+  border-radius: 0;
+  margin-left: auto;
+}
+
+.fly-attack-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 #000;
+}
+
 /* ── Mobile ── */
 @media (max-width: 520px) {
   #game-header { padding: 10px 16px; }

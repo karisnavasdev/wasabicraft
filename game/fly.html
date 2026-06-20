@@ -28,18 +28,21 @@
   <main id="game-wrap">
     <div id="game-title-block">
       <h1 id="game-title">WASABI FLY</h1>
-      <p id="game-sub">Flap through the chili gates. Don't crash.</p>
+      <p id="game-sub">Flap through wide gates. Shoot chilis &amp; walls for bonus points.</p>
     </div>
 
     <div id="fly-shell" class="mini-game-shell" data-asset-base="../">
       <canvas id="fly-canvas" aria-label="Wasabi Fly game"></canvas>
-      <div class="mini-hud">
+      <div class="mini-hud fly-mini-hud">
         <div class="hud-item"><span class="hud-label">SCORE</span><span id="fly-hud-score" class="hud-val">0</span></div>
+        <div class="hud-item"><span class="hud-label">KILLS</span><span id="fly-hud-kills" class="hud-val">0</span></div>
+        <button type="button" id="fly-btn-attack" class="fly-attack-btn" aria-label="Attack">🔫</button>
       </div>
       <div id="fly-overlay-start" class="overlay">
         <img src="../123.png" alt="" class="overlay-mascot" />
         <h2>TAKE OFF</h2>
-        <p>Tap or press SPACE to flap.</p>
+        <p>Flap with <span class="key-hint">SPACE / TAP</span><br/>Attack with <span class="key-hint">X / Z / 🔫</span></p>
+        <p class="overlay-controls">Shoot chilis + walls for bonus score. Gates are wide open!</p>
         <button id="fly-btn-start" class="game-btn game-btn-gold">START FLYING</button>
       </div>
       <div id="fly-overlay-gameover" class="overlay hidden">
